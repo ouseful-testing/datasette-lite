@@ -36,6 +36,12 @@ async function startDatasette(initialUrl) {
     # Workaround for Requested 'h11<0.13,>=0.11', but h11==0.13.0 is already installed
     await micropip.install("h11==0.12.0")
     await micropip.install("datasette==0.62a0")
+    
+    from pathlib import Path
+    Path('./templates/pages').mkdir(parents=True, exist_ok=True)
+    with open('templates/pages/demo.html', 'w') as f:
+      f.write('<html><head><title>Demo<</title></head><body><h1>Test</h1></body></html>')
+
     from datasette.app import Datasette
     ds = Datasette(names, settings={
         "num_sql_threads": 0,
