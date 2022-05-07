@@ -37,6 +37,9 @@ async function startDatasette(initialUrl) {
     await micropip.install("h11==0.12.0")
     await micropip.install("datasette==0.62a0")
     
+    with open("metadata.json", "w") as f:
+      f.write('{"title": "Custom metadata title", "description": "Custom metadata description"}')
+    
     from pathlib import Path
     Path('./templates/pages').mkdir(parents=True, exist_ok=True)
     with open('templates/pages/demo.html', 'w') as f:
